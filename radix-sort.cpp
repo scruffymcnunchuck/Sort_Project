@@ -8,6 +8,7 @@
 
 #include "sort.h"
 #include <iostream>
+#include <vector>
 
 int power(int base, int power){
     if ( power == 0 ) { return 1; }
@@ -39,12 +40,19 @@ int determine_size(int n){
 void
 RadixSort::sort(int A[], int size)
 {
-    
-    for ( int i = 0; i < 5; ++i ){
-        int exp = determine_size(test_array[i]);
-        cout << mod_num(A[i]);
+    int max = 0;
+    for ( int i = 0; i < size; ++i ){
+        if (A[i] > max) { max = A[i]; }
     }
-    
+    int list_max_size = determine_size(max);
+    for ( int i = 1; i <= list_max_size; ++i ){
+        vector<int> arrayB (10,0);
+        for ( int j = 0; j < size; ++j ){
+            int tmp = mod_num(A[j],i)/(power(10,i-1));
+            ++arrayB[tmp];
+        }
+    }
+        
   /*
      Complete this function with the implementation of radix sort
      algorithm.
