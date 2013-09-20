@@ -11,10 +11,12 @@
 void
 InsertionSort::sort(int A[], int size)				// main entry point
 {
+	num_cmps = 0;
 	for(int i=1; i<size; i++){
 		int temp = A[i];
 		int j=i;
 		for(; j>0 && temp < A[j-1]; j--){
+			num_cmps++;
 			A[j] = A[j-1];
 		}
 		A[j]=temp;	
