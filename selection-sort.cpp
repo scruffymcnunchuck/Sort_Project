@@ -19,8 +19,9 @@ SelectionSort::sort(int A[], int size)				// main entry point
 			if(A[i] < A[index]){
 				num_cmps++;
 				index = i;
-		}else{
-			num_cmps++;
+			}else{
+				num_cmps++;
+			}
 		}
 		int tmp = A[k];
 		A[k] = A[index];
