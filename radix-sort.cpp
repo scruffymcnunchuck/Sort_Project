@@ -48,8 +48,7 @@ RadixSort::sort(int A[], int size)
         for ( int j = 0; j < size; ++j ){
             int tmp = mod_num(A[j],i)/(power(10,i-1));
             ++arrayB[tmp];
-		}
-		
+		}		
 		
 		for ( int j = 0; j < arrayB.size(); ++j ) {
 			if (j==0) { arrayB[j] = arrayB[j]; }
@@ -57,23 +56,28 @@ RadixSort::sort(int A[], int size)
 				arrayB[j] = arrayB[j] + arrayB[j-1]; 
 			}
 		}
-		//for(int i =0; i<10; i++){
-		//	cout << "this is arrayB " << arrayB[i] << endl;
-		//}
+		
 		int indexA;
+		int check=0;
 		int arrayC[size];
 		for ( int j = 0; j < size; ++j ) {
 			int tmp = mod_num(A[j],i)/(power(10,i-1));
-			indexA = arrayB[tmp]-1;
-			arrayB[tmp] = arrayB[tmp]-1;
-			arrayC[indexA] = A[j];
+			if ( tmp == 0 ){
+				arrayC[check] = A[j];
+				++check;
+			}
+			if ( tmp > 0 ){
+				indexA = arrayB[tmp-1];
+				++arrayB[tmp-1];
+				arrayC[indexA] = A[j];
+			}
 		}
 		
-		for(int i = 0; i<size; i++){
-			A[i] = arrayC[i];
+		for(int j = 0; j<size; j++){
+			A[j] = arrayC[j];
+			cout << A[j] << endl;
 		}
 		
-		//cout << i << " this is i " << endl;
     }
         
   /*
